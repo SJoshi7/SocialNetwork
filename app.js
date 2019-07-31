@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator')
 const mongoose = require('mongoose');
 const postRoutes = require("./routes/post");
@@ -20,6 +21,7 @@ mongoose.connection.on('error',err=>console.log(`DB connection ERROR: ${err.mess
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(expressValidator())
 app.use("/",postRoutes);
 app.use("/",authRoutes);
